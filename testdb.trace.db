@@ -1,0 +1,76 @@
+2026-04-09 23:17:06.381276+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "DATABASECHANGELOGLOCK" не найдена
+Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-240]
+2026-04-09 23:23:24.818923+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM PRODUCTS DATABASECHANGELOGLOCK [*]PRODUCTS"
+Syntax error in SQL statement "SELECT * FROM PRODUCTS DATABASECHANGELOGLOCK [*]PRODUCTS"; SQL statement:
+SELECT * FROM PRODUCTS DATABASECHANGELOGLOCK PRODUCTS [42000-240]
+2026-04-09 23:26:09.229659+03:00 database: flush
+org.h2.message.DbException: Внутренняя ошибка: "org.h2.mvstore.MVStoreException: The file is locked: D:/RGR/testdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/RGR/testdb.mv.db [2.4.240/7]" [50000-240]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1675)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:502)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:296)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2164)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:328)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:350)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.Driver.connect(Driver.java:59)
+	at liquibase.database.jvm.JdbcConnection.open(JdbcConnection.java:48)
+	at liquibase.database.ConnectionServiceFactory.create(ConnectionServiceFactory.java:32)
+	at liquibase.database.DatabaseFactory.openConnection(DatabaseFactory.java:238)
+	at liquibase.database.DatabaseFactory.openConnection(DatabaseFactory.java:188)
+	at liquibase.database.DatabaseFactory.openDatabase(DatabaseFactory.java:153)
+	at liquibase.command.core.helpers.AbstractDatabaseConnectionCommandStep.createDatabaseObject(AbstractDatabaseConnectionCommandStep.java:83)
+	at liquibase.command.core.helpers.DbUrlConnectionCommandStep.lambda$obtainDatabase$0(DbUrlConnectionCommandStep.java:113)
+	at liquibase.Scope.lambda$child$0(Scope.java:241)
+	at liquibase.Scope.child(Scope.java:250)
+	at liquibase.Scope.child(Scope.java:240)
+	at liquibase.Scope.child(Scope.java:219)
+	at liquibase.command.core.helpers.DbUrlConnectionCommandStep.obtainDatabase(DbUrlConnectionCommandStep.java:112)
+	at liquibase.command.core.helpers.DbUrlConnectionCommandStep.run(DbUrlConnectionCommandStep.java:86)
+	at liquibase.command.CommandScope.lambda$execute$5(CommandScope.java:269)
+	at liquibase.Scope.child(Scope.java:250)
+	at liquibase.Scope.child(Scope.java:226)
+	at liquibase.command.CommandScope.execute(CommandScope.java:257)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:51)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:21)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+	at picocli.CommandLine.access$1500(CommandLine.java:148)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+	at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+	at picocli.CommandLine.execute(CommandLine.java:2174)
+	at liquibase.integration.commandline.LiquibaseCommandLine.lambda$execute$2(LiquibaseCommandLine.java:412)
+	at liquibase.Scope.child(Scope.java:250)
+	at liquibase.Scope.child(Scope.java:226)
+	at liquibase.integration.commandline.LiquibaseCommandLine.lambda$execute$3(LiquibaseCommandLine.java:389)
+	at liquibase.Scope.child(Scope.java:250)
+	at liquibase.Scope.child(Scope.java:226)
+	at liquibase.integration.commandline.LiquibaseCommandLine.execute(LiquibaseCommandLine.java:386)
+	at liquibase.integration.commandline.LiquibaseCommandLine.main(LiquibaseCommandLine.java:105)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at liquibase.integration.commandline.LiquibaseLauncher.main(LiquibaseLauncher.java:120)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Внутренняя ошибка: "org.h2.mvstore.MVStoreException: The file is locked: D:/RGR/testdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/RGR/testdb.mv.db [2.4.240/7]" [50000-240]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 53 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/RGR/testdb.mv.db [2.4.240/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	... 47 more
